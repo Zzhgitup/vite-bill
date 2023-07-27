@@ -29,7 +29,7 @@ const PopupTime = forwardRef<Poptime, Props>((props, ref) => {
   }, [seleteTime]);
   useImperativeHandle(ref, () => {
     return {
-      showPop() {
+      showPop(): void {
         setShow(true);
       },
       closePop() {
