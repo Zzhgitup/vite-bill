@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+.index {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding-top: 95px;
+  flex-direction: column;
+  .header {
+    position: fixed;
+    top: 0;
+    background-color: rgb(7, 127, 254);
+    width: 100%;
+    height: 95px;
+    .topCard {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: space-evenly;
+      .Card {
+        width: 180px;
+        margin-top: 5px;
+        height: 50px;
+        padding: 10px;
+        span {
+          font-size: 14px;
+          color: white;
+          vertical-align: middle;
+        }
+        .monery {
+          font-size: 24px;
+          font-family: DINCondensed-Bold, DINCondensed;
+        }
+      }
+    }
+    .selectformat {
+      width: 100%;
+      height: 30px;
+      display: flex;
+      justify-content: right;
+      padding-right: 20px;
+      padding-top: 10px;
+      button {
+        width: 90px;
+        height: 25px;
+        border-radius: 10px;
+        margin-left: 10px;
+        border: none;
+        font-size: 14px;
+        padding: 4px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  }
+  .list {
+    padding: 10px;
+    height: calc(100% - 50px);
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: #f5f5f5;
+    padding: 0.26667rem;
+  }
+}
