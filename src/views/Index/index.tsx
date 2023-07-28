@@ -10,28 +10,30 @@ import React, {
 } from "react";
 import "./style.less";
 import { ArrowDown } from "@react-vant/icons";
-import { List, PullRefresh } from "react-vant";
+import { Button, List, Notify, PullRefresh } from "react-vant";
 import { getbilllist } from "./server";
 import { resRoot } from "@/utils/type";
 import BillItem from "@/components/BillItem";
 import dayjs from "dayjs";
 import Popuptype from "@/components/Popuptype";
 import PopupTime from "@/components/PopupTime";
-
+import PopupAddBill from "@/components/PopupAddBill";
 interface Props {
   children?: React.ReactNode;
 }
+
 const Index: React.FC<Props> = () => {
   const [page, setPage] = useState(1);
   const typeref = useRef<ElementRef<typeof Popuptype>>(null);
   const Timeref = useRef<ElementRef<typeof PopupTime>>(null);
+  const Addbill = useRef<ElementRef<typeof PopupAddBill>>(null);
   const Pulllist = useRef<ElementRef<typeof List>>(null);
   const [totalpage, settotalpage] = useState(0);
   const [list, setList] = useState<Array<any>>([]);
   const [income, setincome] = useState("0");
   const [expense, setexpense] = useState("0");
   const [finished, setFinished] = useState<boolean>(false);
-  const [currentTime, setTime] = useState(dayjs().format("YYYY-MM"));
+  const [currentTime, setTime] = useState(new Date());
   const [type_id, settype] = useState({ type: "全部类型", id: "all" });
   useEffect(() => {
     getbillinfo();
@@ -39,7 +41,7 @@ const Index: React.FC<Props> = () => {
   //数据的获取与设置
   const getbillinfo = async () => {
     const { data }: { data: resRoot } = await getbilllist(
-      currentTime,
+      dayjs(currentTime).format("YYYY-MM"),
       page,
       2,
       type_id.id
@@ -56,6 +58,7 @@ const Index: React.FC<Props> = () => {
     settotalpage(data.totalPage);
     if (page >= data.totalPage) {
       setFinished(true);
+      Notify.show({ type: "success", message: "加载完成！臭宝" });
     }
   };
   //上拉加载
@@ -80,7 +83,7 @@ const Index: React.FC<Props> = () => {
     settype({ type: typeinfo.type, id: typeinfo.id });
     setPage(1);
   }, []);
-  const getTime = useCallback((Timeinfo: string) => {
+  const getTime = useCallback((Timeinfo: Date) => {
     setFinished(false);
     setPage(1);
     setTime(Timeinfo);
@@ -104,7 +107,7 @@ const Index: React.FC<Props> = () => {
             <ArrowDown />
           </button>
           <button onClick={Timeref.current?.showPop}>
-            {Timeref.current?.currenttime}
+            {dayjs(Timeref.current?.currenttime).format("YYYY-MM")}
             <ArrowDown />
           </button>
         </div>
@@ -125,15 +128,14 @@ const Index: React.FC<Props> = () => {
           ) : (
             "没有相关账单"
           )}
-          {/*           <List ref={Pulllist} offset={20} finished={finished} onLoad={onLoad}>
-            {list.map((_, i) => (
-              <BillItem key={i} bill={_} />
-            ))}
-          </List> */}
         </PullRefresh>
       </div>
       <Popuptype getitem={getTypeInfo} ref={typeref} />
       <PopupTime getTime={getTime} ref={Timeref} />
+      <PopupAddBill ref={Addbill} />
+      <button className="recodeBill" onClick={Addbill.current?.showPop}>
+        <i className="iconfont icon-icon-test"></i>
+      </button>
     </div>
   );
 };

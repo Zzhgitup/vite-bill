@@ -12,34 +12,41 @@ import "./style.less";
 import { DatetimePicker, Popup } from "react-vant";
 interface Props {
   children?: ReactNode;
-  getTime: (item: string) => void;
+  getTime: (item: Date) => void;
+  Timetype?:
+    | "date"
+    | "time"
+    | "datetime"
+    | "datehour"
+    | "month-day"
+    | "year-month";
 }
 export interface Poptime {
-  showPop: () => void;
-  closePop: () => void;
-  currenttime: string;
+  showPop: () => Promise<void>;
+  closePop: () => Promise<void>;
+  currenttime: Date;
 }
 const PopupTime = forwardRef<Poptime, Props>((props, ref) => {
   console.log("Poptime被渲染");
-  const { getTime } = props;
+  const { getTime, Timetype = "year-month" } = props;
   const [show, setShow] = useState(false);
-  const [seleteTime, setTime] = useState(dayjs(new Date()).format("YYYY-MM")); //初始化时间
+  const [seleteTime, setTime] = useState(new Date()); //初始化时间
   useEffect(() => {
     getTime(seleteTime);
   }, [seleteTime]);
   useImperativeHandle(ref, () => {
     return {
-      showPop(): void {
+      async showPop() {
         setShow(true);
       },
-      closePop() {
+      async closePop() {
         setShow(false);
       },
       currenttime: seleteTime,
     };
   });
   const CommitDate = (e: Date) => {
-    setTime(dayjs(e).format("YYYY-MM"));
+    setTime(e);
   };
   return (
     <div>
@@ -54,7 +61,7 @@ const PopupTime = forwardRef<Poptime, Props>((props, ref) => {
       >
         <div className="Poptimeselsete">
           <DatetimePicker
-            type="year-month"
+            type={Timetype}
             minDate={new Date(2020, 0, 1)}
             maxDate={new Date()}
             defaultValue={new Date()}

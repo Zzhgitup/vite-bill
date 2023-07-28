@@ -1,17 +1,21 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4182619 */
-  src: url("iconfont.woff2?t=1690271826468") format("woff2"),
-    url("iconfont.woff?t=1690271826468") format("woff"),
-    url("iconfont.ttf?t=1690271826468") format("truetype");
+  src: url("iconfont.woff2?t=1690458313334") format("woff2"),
+    url("iconfont.woff?t=1690458313334") format("woff"),
+    url("iconfont.ttf?t=1690458313334") format("truetype");
 }
 
 .iconfont {
-  color: rgb(3, 115, 254);
   font-family: "iconfont" !important;
   font-size: 16px;
+  color: #0373fe;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-icon-test:before {
+  content: "\e603";
 }
 
 .icon-gouwuchekong:before {
