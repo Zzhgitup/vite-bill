@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import "./style.less";
 import { ArrowDown } from "@react-vant/icons";
-import { Button, List, Notify, PullRefresh } from "react-vant";
+import { Button, Empty, List, Notify, PullRefresh } from "react-vant";
 import { getbilllist } from "./server";
 import { resRoot } from "@/utils/type";
 import BillItem from "@/components/BillItem";
@@ -88,6 +88,13 @@ const Index: React.FC<Props> = () => {
     setPage(1);
     setTime(Timeinfo);
   }, []);
+  const addbillrefresh = useCallback(() => {
+    if (page == 1) {
+      getbillinfo();
+    } else {
+      setPage(1);
+    }
+  }, [page]);
   return (
     <div className="index">
       <div className="header">
@@ -126,13 +133,13 @@ const Index: React.FC<Props> = () => {
               ))}
             </List>
           ) : (
-            "没有相关账单"
+            <Empty description="账单为空" />
           )}
         </PullRefresh>
       </div>
       <Popuptype getitem={getTypeInfo} ref={typeref} />
       <PopupTime getTime={getTime} ref={Timeref} />
-      <PopupAddBill ref={Addbill} />
+      <PopupAddBill ref={Addbill} billrefrsh={addbillrefresh} />
       <button className="recodeBill" onClick={Addbill.current?.showPop}>
         <i className="iconfont icon-icon-test"></i>
       </button>

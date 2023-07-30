@@ -1,0 +1,53 @@
+* {
+  touch-action: pan-x;
+}
+.Billtype {
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  .billselete {
+    height: auto;
+    width: auto;
+    overflow: auto;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .Bilstyleitem {
+      white-space: nowrap;
+      display: block;
+      margin-left: 40px;
+      height: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      font-size: 14px;
+      font-weight: 600;
+      .billicon {
+        border: 1px solid rgb(133, 133, 133);
+        display: flex;
+        padding-left: 5px;
+        border-radius: 50%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        .iconfont {
+          color: rgb(169, 169, 169);
+        }
+      }
+      .active1 {
+        border: 1px solid rgb(30, 128, 255);
+        background-color: rgb(30, 128, 255);
+        .iconfont {
+          color: white;
+        }
+      }
+      .active2 {
+        border: 1px solid rgb(224, 179, 41);
+        background-color: rgb(224, 179, 41);
+        .iconfont {
+          color: white;
+        }
+      }
+    }
+  }
+}

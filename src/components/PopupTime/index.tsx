@@ -52,7 +52,7 @@ const PopupTime = forwardRef<Poptime, Props>((props, ref) => {
     <div>
       <Popup
         visible={show}
-        style={{ height: "auto" }}
+        style={{ height: "50%" }}
         closeable
         className="PopTime"
         position="bottom"

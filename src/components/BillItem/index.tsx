@@ -34,6 +34,7 @@ const Billitem: FC<Props> = (props) => {
     setExpense(_expense);
   }, [bill.bills]);
   function lookbill(bill: Bill) {
+    navigateTo("/detile?id=" + bill.id);
     console.log(bill);
   }
   return (
@@ -63,11 +64,11 @@ const Billitem: FC<Props> = (props) => {
                   <span>{item.type_name}</span>
                 </div>
                 {item.pay_type == 2 ? (
-                  <div className="monery" style={{ color: "red" }}>
+                  <div className="monery" style={{ color: "green" }}>
                     +{Number(item.amount).toFixed(2)}
                   </div>
                 ) : (
-                  <div className="monery">
+                  <div className="monery" style={{ color: "red" }}>
                     -{Number(item.amount).toFixed(2)}
                   </div>
                 )}
