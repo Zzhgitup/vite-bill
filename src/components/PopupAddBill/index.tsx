@@ -109,6 +109,7 @@ const PopuoAddBill = forwardRef<PopupAddtype, Props>((props, ref) => {
           pay_type: typeselete == "支出" ? 1 : 2,
           remark: remark || "",
         });
+        billrefrsh();
         setzhezhao(false);
         setShow(false);
 

@@ -19,3 +19,15 @@ export interface Bill {
   type_id: any; //类型ID
   type_name: string; //类型昵称
 }
+export interface Datetype {
+  total_expense: string;
+  total_income: string;
+  total_data: TotalDaum[];
+}
+
+export interface TotalDaum {
+  type_id: number;
+  type_name: string;
+  pay_type: number;
+  number: number;
+}
