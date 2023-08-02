@@ -1,0 +1,66 @@
+.user {
+  width: 100%;
+  height: auto;
+  position: relative;
+  .topheader {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 200px;
+    padding-top: 30px;
+    background-color: rgb(61, 121, 229);
+    .useinfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      font-size: 14px;
+      width: 100px;
+      height: 100px;
+      color: white;
+      .usename {
+        background-color: #a4a4a436;
+        padding-top: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-family: 800;
+      }
+    }
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+  .iderban {
+    width: 90vw;
+    height: 200px;
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    border-radius: 10px;
+    overflow: hidden;
+    transform: translateX(-50%);
+    background-color: white;
+    -webkit-box-shadow: 0px 0px 50px 0px rgba(125, 125, 125, 1);
+    -moz-box-shadow: 0px 0px 50px 0px rgba(125, 125, 125, 1);
+    box-shadow: 0px 0px 50px 0px rgba(125, 125, 125, 1);
+    .item {
+      display: flex;
+      justify-content: space-between;
+      height: 70px;
+      padding: 10px;
+      box-sizing: border-box;
+      width: 100%;
+      font-size: 16px;
+      img {
+        transform: scale(1.5);
+        width: 40px;
+        height: 40px;
+      }
+      span {
+        line-height: 45px;
+      }
+    }
+  }
+}

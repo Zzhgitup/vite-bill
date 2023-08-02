@@ -1,4 +1,11 @@
-import React, { ElementRef, memo, useEffect, useRef, useState } from "react";
+import React, {
+  ElementRef,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import * as echarts from "echarts";
 import { FC, ReactNode } from "react";
 import "./style.less";
@@ -6,18 +13,18 @@ import PopupTime from "@/components/PopupTime";
 import { getbilldate } from "./server";
 import dayjs from "dayjs";
 import { Datetype } from "@/utils/type";
-import { Progress } from "react-vant";
+import { Empty, Progress } from "react-vant";
 import { typebill } from "@/utils/billtype";
 interface Props {
   children?: ReactNode;
 }
 const Datecharts: FC<Props> = () => {
   const Datetime = useRef<ElementRef<typeof PopupTime>>(null);
-  const [seletetype, setseletetype] = useState(1);
+  const [seletetype, setseletetype] = useState(1); //类型选择
   const [totalincome, settotalincome] = useState(0); //总收入
   const [totalexpnese, settotalexpense] = useState(0); //总支出
   const [currentTime, setTime] = useState(new Date()); //时间
-  const [bintustate, setbinstate] = useState(1);
+  const [bintustate, setbinstate] = useState(1); //饼图数据类型
   const [income, setincome] = useState([
     {
       type_id: 4,
@@ -34,10 +41,10 @@ const Datecharts: FC<Props> = () => {
       number: 23,
     },
   ]);
-  const getTime = (val: Date) => {
+  const getTime = useCallback((val: Date) => {
     setTime(val);
     Datetime.current?.closePop(); //关闭弹窗
-  };
+  }, []);
   useEffect(() => {
     fetchdate();
   }, [currentTime]);
@@ -154,8 +161,10 @@ const Datecharts: FC<Props> = () => {
             </span>
           </div>
         </div>
-        {(seletetype == 1 ? expense : income).map((item) => {
-          return (
+        {(seletetype === 1 ? expense : income).length === 0 ? (
+          <Empty description="本月暂无数据" />
+        ) : (
+          (seletetype === 1 ? expense : income).map((item) => (
             <div key={item.type_id} className="datecontarin">
               <div className="datexijie">
                 <div className="datexijie1">
@@ -176,8 +185,8 @@ const Datecharts: FC<Props> = () => {
                 <div className="datexijie5">{percentage(item.number)}%</div>
               </div>
             </div>
-          );
-        })}
+          ))
+        )}
       </div>
       <div className="datecharts">
         <div className="displaybutton">
@@ -199,7 +208,6 @@ const Datecharts: FC<Props> = () => {
         </div>
         <div id="penimg"></div>
       </div>
-
       <PopupTime getTime={getTime} ref={Datetime} />
     </div>
   );

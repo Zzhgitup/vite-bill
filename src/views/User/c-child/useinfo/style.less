@@ -1,0 +1,79 @@
+.userinfo {
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  .user {
+    width: 100%;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    .userinfoavter {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 150px;
+      .upavter {
+        margin-top: 20px;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .rigthinfo {
+        flex: 1;
+        height: 100px;
+        padding: 10px;
+        padding-top: 5px;
+        box-sizing: border-box;
+        p {
+          font-size: 13px;
+        }
+        .buaddfile {
+          width: 80px;
+          height: 30px;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          text-align: center;
+          line-height: 30px;
+          background-color: rgb(50, 128, 246);
+          input {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+          }
+        }
+      }
+    }
+    .decreatch {
+      width: 100%;
+      height: 30px;
+      border-bottom: 1px solid rgb(109, 109, 109);
+      input {
+        width: 100%;
+        border: none;
+        height: 28px;
+        bottom: 0px;
+        background-color: transparent;
+      }
+    }
+    .updatebt {
+      width: 100%;
+      height: 100px;
+      position: relative;
+      .updateuserinfo {
+        width: 80vw;
+        height: 40px;
+        background-color: rgb(50, 128, 246);
+        border: none;
+        border-radius: 10px;
+        margin: auto;
+        position: absolute;
+        left: 50%;
+        top: 50px;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}

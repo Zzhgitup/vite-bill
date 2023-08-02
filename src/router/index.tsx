@@ -1,6 +1,6 @@
 // router/index.js
 import { RouteObject } from "react-router-dom";
-import { Index, Date, User, Login, About } from "./module";
+import { Index, Date, User, Login, About, Userinfo, Password } from "./module";
 const routes: RouteObject[] = [
   {
     path: "/login",
@@ -21,6 +21,14 @@ const routes: RouteObject[] = [
   {
     path: "/detile",
     element: <About />,
+  },
+  {
+    path: "/userinfo",
+    element: <Userinfo />,
+  },
+  {
+    path: "/password",
+    element: <Password />,
   },
 ];
 

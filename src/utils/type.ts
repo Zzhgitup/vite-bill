@@ -31,3 +31,10 @@ export interface TotalDaum {
   pay_type: number;
   number: number;
 }
+//用户信息
+export interface userRoot {
+  username: string;
+  id: number;
+  signature: string;
+  avater: string;
+}
